@@ -1,0 +1,51 @@
+var dataQuiz=[
+ 'Title',
+ 'Description',
+ [/*Questions:*/
+	[
+	 'Quale risposta tra le seguenti &egrave; corretta?',
+	 [
+		[0,-1,'a'],
+		[0,-2,'b'],
+		[1,1,'c -questa-'],
+		[0,-3,'d']
+	 ]
+	],
+	[],
+ ],
+ [/*Result:*/
+ ]
+];
+//
+function setupQuiz(data){
+ var m=data, h=['<h2>',m[0],'</h2><p>',m[1],'</p><progress max="100" value="0"></progress><ul>'],
+ m2=m[2],m2l=m2.length,
+ i=0,
+ m2i,m2i1,m2i1l,
+ j,
+ m2i1j,
+ card,
+ end;
+
+ do{
+	m2i=m2[i];//domandaN(i)
+	if(m2i.length===2){
+		card=['<li><h3>',m2i[0],'</h3><ul>'];
+		m2i1=m2i[1];//risposte
+		m2i1l=m2i1.length;
+		j=0;
+		do{
+			m2i1j=m2i1[j];//rispostaN(j)
+			card[card.length]=['<li>',m2i1j[2],'</li>'].join('');
+		}while(++j<m2i1l);
+		card[card.length]=['</ul></li>'];
+		h[h.length]=card.join('');
+	};
+ }while(++i<m2l);
+ h[h.length]='</ul>';
+ return h.join('');
+};
+
+//console.dir(setupQuiz(dataQuiz));
+//Lorem ipsum
+document.body.innerHTML=setupQuiz(dataQuiz);
